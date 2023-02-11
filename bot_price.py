@@ -47,6 +47,7 @@ while True:
         checksum_address = w3.toChecksumAddress(address)
         print(checksum_address)
         price = contract.functions.getRate(wallet_token, busd_address, True).call()
+        #Записываем в бд цену и время токена
         print("Токен с адресом", wallet_token, "текущая цена:", price)
         sql = "UPDATE token SET price=%s, time=%s WHERE wallet_token=%s"
         val = (price, datetime.datetime.now(), wallet_token)
